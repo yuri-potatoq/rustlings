@@ -11,20 +11,29 @@
 // Execute the command `rustlings hint hashmap1` if you need
 // hints.
 
-// I AM NOT DONE
+// I AM DONE
 
 use std::collections::HashMap;
 
-fn fruit_basket() -> HashMap<String, u32> {
-    let mut basket = // TODO: declare your hash map here.
 
-    // Two bananas are already given for you :)
-    basket.insert(String::from("banana"), 2);
-
-    // TODO: Put more fruits in your basket here.
-
-    basket
+struct FruitBasket <K, V> {
+    fruits: HashMap<K, V>,
 }
+
+impl <K, V> FruitBasket <K, V> 
+    where K: Eq + std::hash::Hash
+{
+    fn create() -> Self {
+        Self {
+            fruits: HashMap::<K, V>::new()
+        }
+    }
+
+    fn populate(&mut self, name: K, amount: V) -> () {
+        self.fruits.insert(name, amount);
+    }
+}
+
 
 #[cfg(test)]
 mod tests {
@@ -32,13 +41,32 @@ mod tests {
 
     #[test]
     fn at_least_three_types_of_fruits() {
-        let basket = fruit_basket();
-        assert!(basket.len() >= 3);
+        let mut fruits_basket: FruitBasket::<String, u32> = 
+            FruitBasket::create();
+        
+        let fruits = [
+            ("banana".to_owned(), 2),
+            ("apple".to_owned(), 3),
+            ("avocado".to_owned(), 1),
+        ];
+
+        for (name, amount) in fruits.iter() {
+            fruits_basket.populate(name.clone(), *amount);
+        }
+
+        assert!(fruits_basket.fruits.len() >= 3);
     }
 
     #[test]
     fn at_least_five_fruits() {
-        let basket = fruit_basket();
-        assert!(basket.values().sum::<u32>() >= 5);
+        let mut fruits_basket = 
+            FruitBasket::<String, u32>::create();
+
+        for i in 0..4 {
+            fruits_basket.populate(format!("banana{}", i), 2);
+        }
+
+        println!("counter {}", fruits_basket.fruits.len());
+        assert!(fruits_basket.fruits.values().sum::<u32>() >= 5);
     }
 }
