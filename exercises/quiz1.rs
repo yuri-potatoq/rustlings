@@ -7,10 +7,21 @@
 // more than 40 at once, each apple only costs 1! Write a function that calculates
 // the price of an order of apples given the quantity bought. No hints this time!
 
-// I AM NOT DONE
+// I AM DONE
+
+// (product, price, discount)
+const prices: [(&str, u32, f32); 1] = [
+    ("apple", 2, 0.5),
+];
 
 // Put your function here!
-// fn calculate_apple_price {
+fn calculate_apple_price(quantity: u32) -> u32 { 
+    if quantity > 40 {
+        (prices[0].1 as f32 * (1.0 * prices[0].2)) as u32 * quantity
+    } else {
+        prices[0].1 * quantity
+    }
+}
 
 // Don't modify this function!
 #[test]

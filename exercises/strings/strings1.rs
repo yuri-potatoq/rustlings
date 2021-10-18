@@ -2,7 +2,7 @@
 // Make me compile without changing the function signature!
 // Execute `rustlings hint strings1` for hints ;)
 
-// I AM NOT DONE
+// I AM DONE
 
 fn main() {
     let answer = current_favorite_color();
@@ -10,5 +10,8 @@ fn main() {
 }
 
 fn current_favorite_color() -> String {
-    "blue"
+    let ans: &str = "blue";
+    // ans.to_owned()
+    // ans.to_string()
+    String::from(ans)
 }
