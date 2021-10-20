@@ -3,9 +3,11 @@
 
 // Execute `rustlings hint generics1` for hints!
 
-// I AM NOT DONE
+// I AM DONE
 
 fn main() {
-    let mut shopping_list: Vec<?> = Vec::new();
+    let mut shopping_list: Vec<&str> = Vec::new();
+    // let mut shopping_list = Vec::new();    
+    // let mut shopping_list = Vec::<&str>::new();
     shopping_list.push("milk");
 }
